@@ -12,11 +12,11 @@ const {
   isAdminRole,
 } = require("../middlewares");
 
-// const {
-//   isRoleValid,
-//   emailExist,
-//   userIdExist,
-// } = require("../helpers/db-validators");
+const {
+  isRoleValid,
+  emailExist,
+  userIdExist,
+} = require("../helpers/db-validators");
 
 const {
   usersGet,
@@ -37,8 +37,8 @@ router.post(
       min: 6,
     }),
     check("email", "Email is invalid").isEmail(),
-    // check("rol").custom(isRoleValid),
-    // check("email").custom(emailExist),
+    check("rol").custom(isRoleValid),
+    check("email").custom(emailExist),
     validFields,
   ],
   userPost
