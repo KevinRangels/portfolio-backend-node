@@ -34,9 +34,7 @@ const UserSchema = Schema({
 });
 
 UserSchema.methods.toJSON = function () {
-  const {
-    __v, password, _id, ...user
-  } = this.toObject(); // sacar el password de la response
+  const { __v, password, _id, ...user } = this.toObject(); // sacar el password de la response
   user.uid = _id; // cambiar _id por uid
   return user;
 };

@@ -18,21 +18,23 @@ const isAdminRole = (req, res = response, next) => {
   return next();
 };
 
-const hasRoles = (...roles) => (req, res = response, next) => {
-  if (!req.user) {
-    return res.status(500).json({
-      msg: 'Verify rol and not first token',
-    });
-  }
+const hasRoles =
+  (...roles) =>
+  (req, res = response, next) => {
+    if (!req.user) {
+      return res.status(500).json({
+        msg: 'Verify rol and not first token',
+      });
+    }
 
-  if (!roles.includes(req.user.rol)) {
-    return res.status(401).json({
-      msg: `The service require roles ${roles}`,
-    });
-  }
+    if (!roles.includes(req.user.rol)) {
+      return res.status(401).json({
+        msg: `The service require roles ${roles}`,
+      });
+    }
 
-  return next();
-};
+    return next();
+  };
 
 module.exports = {
   isAdminRole,
