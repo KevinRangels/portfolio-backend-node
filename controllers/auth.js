@@ -1,7 +1,7 @@
-const { response } = require("express");
-const bcryptjs = require("bcryptjs");
-const User = require("../models/user");
-const { generateJWT } = require("../helpers/generate-jwt");
+const { response } = require('express');
+const bcryptjs = require('bcryptjs');
+const User = require('../models/user');
+const { generateJWT } = require('../helpers/generate-jwt');
 
 const login = async (req, res = response) => {
   const { email, password } = req.body;
@@ -14,7 +14,7 @@ const login = async (req, res = response) => {
 
     if (!user) {
       return res.status(400).json({
-        msg: "User / Password invalids",
+        msg: 'User / Password invalids',
       });
     }
 
@@ -22,7 +22,7 @@ const login = async (req, res = response) => {
 
     if (!user.state) {
       return res.status(400).json({
-        msg: "State is false",
+        msg: 'State is false',
       });
     }
 
@@ -31,21 +31,21 @@ const login = async (req, res = response) => {
     const validPassword = bcryptjs.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(400).json({
-        msg: "Password is invalid",
+        msg: 'Password is invalid',
       });
     }
 
     // Generar el JWT
     const token = await generateJWT(user.id);
 
-    res.json({
+    return res.json({
       user,
       token,
     });
   } catch (error) {
-    console.log("error", error);
+    console.log('error', error);
     return res.status(500).json({
-      msg: "Talk to the admin",
+      msg: 'Talk to the admin',
     });
   }
 };

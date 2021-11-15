@@ -4,8 +4,8 @@ const googleVerify = require('./google-verify');
 const uploadFiles = require('./upload-files');
 
 module.exports = {
-    ...dbValidators,
-    ...generateJWT,
-    ...googleVerify,
-    ...uploadFiles
-}
+  ...dbValidators,
+  ...generateJWT,
+  ...googleVerify,
+  ...uploadFiles,
+};

@@ -1,7 +1,7 @@
-const { response, json } = require("express");
-const bcryptjs = require("bcryptjs");
+const { response } = require('express');
+const bcryptjs = require('bcryptjs');
 
-const User = require("../models/user");
+const User = require('../models/user');
 
 const usersGet = async (req, res = response) => {
   // Example -> /api/users?q=hola1&nombre=fernando
@@ -27,9 +27,16 @@ const usersGet = async (req, res = response) => {
 };
 
 const userPost = async (req, res) => {
-  const { name, email, password, rol } = req.body;
+  const {
+    name, email, password, rol,
+  } = req.body;
 
-  const user = new User({ name, email, password, rol });
+  const user = new User({
+    name,
+    email,
+    password,
+    rol,
+  });
 
   // Encriptar contraseña
   const salt = bcryptjs.genSaltSync();
@@ -43,20 +50,25 @@ const userPost = async (req, res) => {
   });
 };
 
-const userPut = async (req, res = response) => {
-  const { id } = req.params;
-  const { _id, password, google, email, ...rest } = req.body;
+// const userPut = async (req, res = response) => {
+//   const { id } = req.params;
+//   const {
+//     _id, password, google, email, ...rest
+//   } = req.body;
+// password, google, email, ...rest } = req.body;
+// password, google, email, ...rest } = req.body;
+// password, google, email, ...rest } = req.body;
 
-  if (password) {
-    // Encriptar contraseña
-    const salt = bcryptjs.genSaltSync();
-    rest.password = bcryptjs.hashSync(password, salt);
-  }
+//   if (password) {
+//     // Encriptar contraseña
+//     const salt = bcryptjs.genSaltSync();
+//     rest.password = bcryptjs.hashSync(password, salt);
+//   }
 
-  const user = await User.findByIdAndUpdate(id, rest);
+//   const user = await User.findByIdAndUpdate(id, rest);
 
-  res.json(user);
-};
+//   res.json(user);
+// };
 
 const userDelete = async (req, res) => {
   const { id } = req.params;
@@ -77,7 +89,7 @@ const userDelete = async (req, res) => {
 
 module.exports = {
   usersGet,
-  userPut,
+  // userPut,
   userPost,
   userDelete,
 };

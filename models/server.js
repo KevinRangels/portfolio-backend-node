@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const { dbConnection } = require("../database/config");
+const express = require('express');
+const cors = require('cors');
+const { dbConnection } = require('../database/config');
 
 class Server {
   constructor() {
@@ -8,8 +8,8 @@ class Server {
     this.port = process.env.PORT;
 
     this.paths = {
-      usersRoutes: "/api/users",
-      authRoutes: "/api/auth",
+      usersRoutes: '/api/users',
+      authRoutes: '/api/auth',
     };
 
     // Connect DB
@@ -30,12 +30,12 @@ class Server {
     // Lectura y parseo del body
     this.app.use(express.json());
     // Direcciorio public
-    this.app.use(express.static("public"));
+    this.app.use(express.static('public'));
   }
 
   routes() {
-    this.app.use(this.paths.authRoutes, require("../routes/auth"));
-    this.app.use(this.paths.usersRoutes, require("../routes/user"));
+    this.app.use(this.paths.authRoutes, require('../routes/auth'));
+    this.app.use(this.paths.usersRoutes, require('../routes/user'));
   }
 
   listen() {

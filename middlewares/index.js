@@ -1,7 +1,7 @@
 // const validJWT = require('../middlewares/validation-jwt');
-const validRoles = require("../middlewares/valid-rol");
-const validField = require("../middlewares/valid-fields");
-const validUploadFile = require("../middlewares/valid-file");
+const validRoles = require('./valid-rol');
+const validField = require('./valid-fields');
+const validUploadFile = require('./valid-file');
 
 module.exports = {
   // ...validJWT,
